@@ -28,7 +28,7 @@ body{
     
     position: relative;
 
-    background: linear-gradient(#b7d6c7, transparent) #ffe2d1;/*linear-gradient(#90ebff, white);*/
+    background: linear-gradient(#ad0d93, transparent) #61ece5;/*linear-gradient(#90ebff, white);*/
     transition: background-color 1s linear;
     overflow: hidden;
 }
@@ -102,7 +102,7 @@ body{
     right: 15px;
     z-index: 10;
 
-    color: #d48871;
+    color: #23c5aa;
     font-family: Verdana;
     font-size: 30px;
     font-weight: bold;
@@ -117,7 +117,7 @@ body{
 
 
     text-align: center;
-    color: #7e928b;
+    color: #a31a9c;
     font-size: 30px;
     font-family: Verdana;
     font-weight: 700;
@@ -200,13 +200,6 @@ var tiempoObstaculoMax = 1.8;
 var obstaculoPosY = 16;
 var obstaculos = [];
 
-var tiempoHastaNube = 0.5;
-var tiempoNubeMin = 0.7;
-var tiempoNubeMax = 2.7;
-var maxNubeY = 270;
-var minNubeY = 100;
-var nubes = [];
-var velNube = 0.5;
 
 var contenedor;
 var dino;
@@ -229,9 +222,9 @@ function Update() {
     MoverDinosaurio();
     MoverSuelo();
     DecidirCrearObstaculos();
-    DecidirCrearNubes();
+    
     MoverObstaculos();
-    MoverNubes();
+   
     DetectarColision();
 
     velY -= gravedad * deltaTime;
@@ -291,36 +284,6 @@ function DecidirCrearObstaculos() {
     }
 }
 
-function DecidirCrearNubes() {
-    tiempoHastaNube -= deltaTime;
-    if(tiempoHastaNube <= 0) {
-        CrearNube();
-    }
-}
-
-function CrearObstaculo() {
-    var obstaculo = document.createElement("div");
-    contenedor.appendChild(obstaculo);
-    obstaculo.classList.add("cactus");
-    if(Math.random() > 0.5) obstaculo.classList.add("cactus2");
-    obstaculo.posX = contenedor.clientWidth;
-    obstaculo.style.left = contenedor.clientWidth+"px";
-
-    obstaculos.push(obstaculo);
-    tiempoHastaObstaculo = tiempoObstaculoMin + Math.random() * (tiempoObstaculoMax-tiempoObstaculoMin) / gameVel;
-}
-
-function CrearNube() {
-    var nube = document.createElement("div");
-    contenedor.appendChild(nube);
-    nube.classList.add("nube");
-    nube.posX = contenedor.clientWidth;
-    nube.style.left = contenedor.clientWidth+"px";
-    nube.style.bottom = minNubeY + Math.random() * (maxNubeY-minNubeY)+"px";
-    
-    nubes.push(nube);
-    tiempoHastaNube = tiempoNubeMin + Math.random() * (tiempoNubeMax-tiempoNubeMin) / gameVel;
-}
 
 function MoverObstaculos() {
     for (var i = obstaculos.length - 1; i >= 0; i--) {
@@ -335,17 +298,7 @@ function MoverObstaculos() {
     }
 }
 
-function MoverNubes() {
-    for (var i = nubes.length - 1; i >= 0; i--) {
-        if(nubes[i].posX < -nubes[i].clientWidth) {
-            nubes[i].parentNode.removeChild(nubes[i]);
-            nubes.splice(i, 1);
-        }else{
-            nubes[i].posX -= CalcularDesplazamiento() * velNube;
-            nubes[i].style.left = nubes[i].posX+"px";
-        }
-    }
-}
+
 
 function GanarPuntos() {
     score++;
