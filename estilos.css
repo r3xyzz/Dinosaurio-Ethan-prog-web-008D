@@ -1,0 +1,42 @@
+body {
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+h1 {
+    color: #333;
+}
+
+.dinosaurio {
+    width: 60px;
+    height: 60px;
+    background-image: url('images/dino.png');
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+    transition: bottom 0.3s ease;
+}
+
+.obstaculo {
+    position: absolute;
+    bottom: 0;
+}
+
+.obstaculo img {
+    width: 30px;
+    height: 60px;
+}
+
+#puntuacion {
+    margin-top: 20px;
+    font-size: 18px;
+}
